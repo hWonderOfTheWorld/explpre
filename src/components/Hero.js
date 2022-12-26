@@ -39,42 +39,22 @@ const Hero = () => {
         textAlign="center"
         mx="auto"
       >
-        <chakra.h1
-          mb={3}
-          fontSize={{ base: '4xl', md: '5xl' }}
-          fontWeight={{ base: 'bold', md: 'extrabold' }}
-          color={useColorModeValue('gray.900', 'gray.100')}
-          lineHeight="shorter"
-        >
-          The Portal to a New Web
-        </chakra.h1>
         <chakra.p
           mb={3}
           fontSize={{ base: 'lg', md: 'xl' }}
           color="gray.500"
           lineHeight="base"
         >
-          Browse the Ceramic network and <br />
-          experience the emergence of a new interaction paradigm.
+          Stream Explorer<br />
         </chakra.p>
-        <chakra.p
-          mb={6}
-          fontSize={{ base: 'lg', md: 'xl' }}
-          color="gray.500"
-          lineHeight="base"
-          fontWeight="bold"
-        >
-          <chakra.span
-            bgGradient="linear(to-r, orange.500, orange.300)"
-            bgClip="text"
-          >
-            Now live on Ceramic mainnet!
-          </chakra.span>{" "}
-           🤩 🎉
-        </chakra.p>
+      
         <Center>
           <DocInputForm baseBorder={1} />
         </Center>
+
+       
+
+        
       </Box>
     </Box>
   )

@@ -103,36 +103,21 @@ const Document = (props: DocProps) => {
           </Text>
         ) : (
           <>
-            {lens ? (
-              isLoading ? (
-                <Skeleton h={10} />
-              ) : (
-                <Box maxW={'100%'} overflowX="auto">
-                  <RemoteComponent
-                    url={lens?.state?.content?.content}
-                    docContent={docContent}
-                  />
-                </Box>
-              )
-            ) : (
-              <Grid
-                templateColumns={{
-                  base: 'repeat(1)',
-                  lg: 'repeat(12)',
-                }}
-                gap={3}
-                p={{ base: 3, lg: 6 }}
-              >
-                <GridItem
-                  colStart={{ base: 1, lg: 1 }}
-                  colEnd={{ base: 1, lg: 9 }}
-                  position="relative"
-                >
-                  <Box>
-                    <Heading size="md" mb={3}>
-                      Content
-                    </Heading>
-                    {isLoading ? (
+        
+            <div className="w-full mx-auto lg:w-11/12">
+  <div className="bg-white border border-zinc-200  rounded-md my-6">
+    <table className="min-w-max w-full table-auto">
+
+      <tbody className="text-gray-600 text-sm font-light">
+      <tr className="hover:bg-gray-100">
+          <td className="py-3 px-6 text-left whitespace-nowrap">
+            <div className="flex items-center">
+              <span className="font-medium">Content</span>
+            </div>
+          </td>
+          <td className="py-3 px-6 text-left">
+            <div className="flex items-center">
+            {isLoading ? (
                       <Skeleton height="20px" width={400} />
                     ) : docContent !== undefined ? (
                       (doc?.state.doctype === 'tile' &&
@@ -171,34 +156,67 @@ const Document = (props: DocProps) => {
                     ) : (
                       <Text color="gray.300">No content</Text>
                     )}
-                  </Box>
-                  <Divider my={5} display={{ base: 'inherit', lg: 'none' }} />
-                </GridItem>
-                <GridItem
-                  colStart={{ base: 1, lg: 10 }}
-                  colEnd={{ base: 1, lg: 12 }}
-                >
-                  <Box>
-                    <Heading size="md" mb={3}>
-                      ID
-                    </Heading>
-                    <Text>
-                      {docId && truncate(docId, 45)}
-                    </Text>
-                    <Divider my={5} />
-                  </Box>
-                  <Box>
-                    <Heading mb={3} size="md">
-                      Metadata
-                    </Heading>
-                    {doc?.state?.metadata ? (
+            </div>
+          </td>
+        </tr>
+        <tr className="hover:bg-gray-100">
+          <td className="py-3 px-6 text-left whitespace-nowrap">
+            <div className="flex items-center">
+              <span className="font-medium">Stream ID</span>
+            </div>
+          </td>
+          <td className="py-3 px-6 text-left">
+            <div className="flex items-center">
+              <span> {docId && truncate(docId, 45)}</span>
+            </div>
+          </td>
+        </tr>
+        <tr className="hover:bg-gray-100">
+          <td className="py-3 px-6 text-left whitespace-nowrap">
+            <div className="flex items-center">
+              <span className="font-medium">Network</span>
+            </div>
+          </td>
+          <td className="py-3 px-6">
+            <span className="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">
+              Mainnet
+            </span>
+          </td>
+        </tr>
+        <tr className="hover:bg-gray-100">
+          <td className="py-3 px-6 text-left whitespace-nowrap">
+            <div className="flex items-center">
+              <span className="font-medium">Anchoring</span>
+            </div>
+          </td>
+          <td className="py-3 px-6 text-left">
+            <div className="flex items-center">
+            {doc?.state?.anchorStatus !== undefined && (
+                      <Box mb={3}>
+                        <Text fontWeight="bold" mb={1}>
+                          Status
+                        </Text>
+                        <Text>
+                          {doc?.state &&
+                            formatAnchorStatus(doc!.state.anchorStatus)}
+                        </Text>
+                      </Box>
+                    )}
+            </div>
+          </td>
+        </tr>
+
+        {doc?.state?.metadata ? (
                       Object.entries(doc?.state?.metadata).map(
                         (entry: any[], i) => (
-                          <Box key={i} mb={3}>
+                          <tr className="hover:bg-gray-100">
+                            <td className="py-3 px-6 text-left whitespace-nowrap">
                             <Text fontWeight="bold" mb={1}>
                               {entry[0] && entry[0].toString()}
                             </Text>
+                            </td>
                             {entry[0].toString() === 'schema' ? (
+                              <td className="py-3 px-6 text-left">
                               <Link
                                 to={`/document/${entry[1]?.replace(
                                   /^ceramic:\/\//,
@@ -214,14 +232,17 @@ const Document = (props: DocProps) => {
                                   {entry[1] && truncate(entry[1].toString(), 45)}
                                 </Text>
                               </Link>
+                              </td>
                             ) : (
+                              <td className="py-3 px-6 text-left">
                               <Text
                                 wordBreak="break-all"
                               >
-                                {entry[1] && truncate(entry[1].toString(), 45)}
+                                {entry[1] && truncate(entry[1].toString().replace('orbis', 'streamkit'), 45)}
                               </Text>
+                              </td>
                             )}
-                          </Box>
+                          </tr>
                         )
                       )
                     ) : (
@@ -233,55 +254,21 @@ const Document = (props: DocProps) => {
                         )}
                       </>
                     )}
-                  </Box>
-                  <Divider my={5} />
-                  <Box>
-                    <Heading mb={3} size="md">
-                      Anchoring
-                    </Heading>
-                    {doc?.state?.anchorStatus !== undefined && (
-                      <Box mb={3}>
-                        <Text fontWeight="bold" mb={1}>
-                          Status
-                        </Text>
-                        <Text>
-                          {doc?.state &&
-                            formatAnchorStatus(doc!.state.anchorStatus)}
-                        </Text>
-                      </Box>
-                    )}
-                    {doc?.state?.anchorProof?.blockNumber && (
-                      <Box mb={3}>
-                        <Text mb={1} fontWeight="bold">
-                          Block Number
-                        </Text>
-                        <Text>{doc?.state?.anchorProof?.blockNumber}</Text>
-                      </Box>
-                    )}
-                    {doc?.state?.anchorProof?.blockTimestamp && (
-                      <Box mb={3}>
-                        <Text mb={1} fontWeight="bold">
-                          Block Timestamp
-                        </Text>
-                        <Text>{doc?.state?.anchorProof?.blockTimestamp}</Text>
-                      </Box>
-                    )}
-                    {doc?.state?.anchorProof?.chainId && (
-                      <Box mb={3}>
-                        <Text mb={1} fontWeight="bold">
-                          Chain Id
-                        </Text>
-                        <Text>{doc?.state?.anchorProof?.chainId}</Text>
-                      </Box>
-                    )}
-                  </Box>
-                  <Divider my={5} />
-                  <Box>
-                    <Heading mb={3} size="md">
-                      History
-                    </Heading>
-                    <Box maxH="250px" overflowY="scroll">
-                      {doc?.state?.log ? (
+
+            
+            <tr>
+
+            </tr>
+
+
+            <tr className="hover:bg-gray-100">
+          <td className="py-3 px-6 text-left whitespace-nowrap">
+            <div className="flex items-center">
+              <span className="font-medium">History</span>
+            </div>
+          </td>
+          <td className="py-3 px-6 text-left">
+          {doc?.state?.log ? (
                         (doc?.state?.log).reverse().map((commit, i) => (
                           <Box key={i} mb={3}>
                             <ChakraLink
@@ -311,18 +298,17 @@ const Document = (props: DocProps) => {
                           )}
                         </>
                       )}
-                    </Box>
-                  </Box>
-                  <Divider my={5} />
-                  <Box>
-                    <Heading mb={3} size="md">
-                      Type
-                    </Heading>
-                    <Text>{doc?.state?.doctype}</Text>
-                  </Box>
-                </GridItem>
-              </Grid>
-            )}
+            </td>
+          </tr>
+
+
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
           </>
         )}
       </>

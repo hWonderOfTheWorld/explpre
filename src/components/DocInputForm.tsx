@@ -25,14 +25,6 @@ const DocInputForm: React.SFC<DocInputFormProps> = ({ isLoading, docId, baseBord
     <form onSubmit={handleSubmit(onSubmit)}>
       <Box width={{ base: '450px', md: '775px' }} mr={1}>
         <InputGroup size="lg">
-          <InputLeftAddon
-            pointerEvents="none"
-            bgColor="gray.100"
-            color="gray.500"
-            children="ceramic://"
-            w={110}
-            display={{ base: 'none', md: 'inherit' }}
-          />
           <Input
             name="docId"
             type="text"

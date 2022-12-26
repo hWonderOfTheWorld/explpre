@@ -26,6 +26,7 @@ const Header: React.FC<HeaderProps> = ({ schema, setLens, docId }) => {
       justifyContent="space-between"
       borderBottomWidth={1}
       p={{ base: 0, lg: 2 }}
+      className="bg-white"
     >
       <Box>
         <ChakraLink

@@ -21,7 +21,7 @@ interface AppProps extends RouteComponentProps {
 export const App = (props: AppProps) => {
   return (
     <>
-      <Box minH="90vh">
+      <Box minH="90vh" className='bg-zinc-100'>
         <Router>
           <DocumentList default />
           <Document path="/document/:docId" />

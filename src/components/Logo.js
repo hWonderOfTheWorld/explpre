@@ -7,44 +7,20 @@ const Logo = (props) => {
   return (
     <Box>
       <Flex alignItems="center">
-        <Box mx={2}>
-          <svg
-            width={size === 'lg' ? 40 : 30}
-            height={size === 'lg' ? 40 : 30}
-            viewBox="0 0 297 297"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M0 121.814L34.3393 148.83L0 175.847L148.5 292.66L297 175.847L262.661 148.83L297 121.814L148.5 5L0 121.814ZM66.9824 151.017L148.5 215.135L230.017 151.017L148.5 86.8803L66.9824 151.017Z"
-              fill="url(#paint0_linear)"
-            />
-            <defs>
-              <linearGradient
-                id="paint0_linear"
-                x1="-2.79247e-06"
-                y1="149"
-                x2="297"
-                y2="149"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stop-color="#ED8936" />
-                <stop offset="1" stop-color="#ED8936" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </Box>
-        <Heading
-          as="h1"
-          size={size === 'lg' ? 'xl' : 'lg'}
-          letterSpacing="-0.5px"
-          color="orange.400"
-          display={{ base: 'none', lg: 'inherit' }}
-        >
-          Tiles
-        </Heading>
+      <div className="flex  mt-1 ">
+              <div className="relative mt-3  mr-2 cursor-pointer">
+                <div className="w-fit -rotate-[45deg]">
+                  <div className="w-3 h-0.5 bg-pink-600 rounded-full mt-0.5 " />
+                  <div className="w-3 h-0.5 bg-pink-600 rounded-full ml-1.5 mt-0.5" />
+                  <div className="w-3 h-0.5 bg-pink-600 rounded-full mt-1 mt-0.5" />
+                  <div className="w-3 h-0.5 bg-pink-600 rounded-full ml-1.5 mt-0.5" />
+                </div>
+              </div>
+              <div className="uppercase tracking-widest text-md mt-3 mb-3 cursor-pointer">
+                <span className="font-['SatoshiBlack']">Stream</span>
+                <span className="font-['Satoshi]">Kit</span>
+              </div>
+              </div>
       </Flex>
     </Box>
   )
