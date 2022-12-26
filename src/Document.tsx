@@ -116,7 +116,7 @@ const Document = (props: DocProps) => {
             </div>
           </td>
           <td className="py-3 px-6 text-left">
-            <div className="flex items-center">
+            <div className="flex items-left flex-col">
             {isLoading ? (
                       <Skeleton height="20px" width={400} />
                     ) : docContent !== undefined ? (
