@@ -11,36 +11,20 @@ const Footer = () => {
       alignItems="center"
       justifyContent="space-between"
     >
-      <Text mr={6} fontSize="sm">
-        Made by{' '}
-        <Link
-          textDecoration="underline"
-          href="https://twitter.com/tannedoaksprout"
-        >
-          oaksprout
+      <Link href="https://ebpto.com">
+         ebpto
         </Link>
-        ,{' '}
-        <Link textDecoration="underline" href="https://github.com/isidorosp">
-          isidorosp
-        </Link>{' '}&{' '}
-        <Link textDecoration="underline" href="https://github.com/emersonmacro">
-          emersonmacro
-        </Link>{' '}
-        in support of{' '}
+      
+      <Flex alignItems="center">
+      <Text mr={6} fontSize="sm">
+        Powered by{' '}
         <Link
-          href="https://ceramic.network"
           textDecoration="underline"
-          bgGradient="linear(to-r, orange.600, orange.400)"
-          bgClip="text"
-          fontWeight="bold"
+          href="https://twitter.com/ownyourip"
         >
-          Ceramic
+          StreamKit
         </Link>
       </Text>
-      <Flex alignItems="center">
-        <Link href="https://github.com/oaksprout/tiles">
-          <AiFillGithub size="24" />
-        </Link>
       </Flex>
     </Flex>
   )
