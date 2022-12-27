@@ -45,7 +45,7 @@ const Hero = () => {
           color="gray.500"
           lineHeight="base"
         >
-          Stream Explorer<br />
+          Dataverse Explorer<br />
         </chakra.p>
       
         <Center>
